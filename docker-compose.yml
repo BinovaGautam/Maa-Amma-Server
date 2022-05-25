@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  dev-db: 
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgress
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=ecomdb
+    volumes:
+      - ./data/dev-db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: always
+    networks:
+      - binova
+networks:
+  binova:
