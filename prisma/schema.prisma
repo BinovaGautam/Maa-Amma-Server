@@ -27,8 +27,23 @@ model Product{
   updatedAt DateTime @updatedAt
 
   name String
-  description String
-  price Int
-  stock Int
-  image String
+  description String?
+  image String? 
+  category Categories @relation(fields: [category_id] , references: [id]) 
+  category_id Int
 }
+
+
+model Categories{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name String
+  description String?
+  parent_id Int?
+  parent Categories? @relation("ParentChild",fields: [parent_id] , references: [id])
+  children Categories[] @relation("ParentChild")
+  products Product[]
+}
+

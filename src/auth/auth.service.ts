@@ -28,12 +28,13 @@ export class AuthService{
             const valid = await argon.verify(user.token, dto.password);
             //if password is valid
             if(valid){
-                // return {
-                //     userId : user.id,
-                //     email : user.email,
-                //     phone : user.phone,
-                // }
-                return this.signToken(user)
+                return {
+                    userId : user.id,
+                    email : user.email,
+                    phone : user.phone,
+                    accessToken : await this.signToken(user)
+                }
+                
             }else{
                 return {message : "Invalid Password"}
             }
@@ -68,7 +69,7 @@ export class AuthService{
         let payload = {sub : user.id , email : user.email , phone : user.phone};
         
         return this.jwtService.signAsync(payload,{
-            expiresIn : '15m',
+            expiresIn : '1w',
             secret : this.config.get('JWT_SECRET')
         });
        
