@@ -1,11 +1,11 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <a href="https://www.linkedin.com/in/binova-gautam-9aa107128/" target="blank"><img src="https://firebasestorage.googleapis.com/v0/b/mightywarners-c98b1.appspot.com/o/Khaki%20%26%20Beige%20Simple%20Aesthetic%20Initials%20Monogram%20Logo.png?alt=media&token=b0fe0ca3-276f-456f-b36f-9d57f357d465" width="200" alt="Binova Logo" /></a>
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> Server built using cutting edge technologies which provides it better mantainiblity and Scaliblity.</p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Node Server](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
 
@@ -64,9 +64,8 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Binova Gautam](https://kamilmysliwiec.com)
+- Website - [https://binnovative.in](https://nestjs.com/)
 
 ## License
 
