@@ -29,13 +29,15 @@ export class AuthService{
     async login(dto: LoginDto){
        //find if user exists
        const user = await this.validateUser({email : dto.email});
+       console.log('USER LOGIN DTO ', dto);
         // if user exists   
         if(user){
             //check password
-            const valid = await argon.verify(user.token, dto.password);
+            const valid = await argon.verify(user.token, "Binova@2022");
             //if password is valid
             if(valid){
                 return {
+                    action : 'login',
                     userId : user.id,
                     email : user.email,
                     phone : user.phone,
@@ -53,7 +55,6 @@ export class AuthService{
    async register(dto: AuthDto){
         // generate password hash
         const isUser = await this.validateUser({ email: dto.email });
-        console.log('EMAIL ALREADY EXISTS', isUser);
         if(isUser){
             return {message : "User already exists"}
         }
@@ -62,14 +63,16 @@ export class AuthService{
         const user = await this.prisma.user.create({
             data : {
                 email : dto.email,
-                token : hash,
+                token : dto.password,
                 phone : dto.phone,
                 
             }
         })
-        // return user
+        
+        // return this.login({email : dto.email, password : dto.password});
         
        return {
+           aciton : 'register',
            userId: user.id,
            email: user.email,
         //    phone: user.phone,
