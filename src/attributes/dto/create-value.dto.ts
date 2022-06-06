@@ -7,5 +7,9 @@ export  class CreateValueDto {
 
     @IsInt()
     @IsNotEmpty()
+    variant_id: number;
+
+    @IsInt()
+    @IsNotEmpty()
     creator_id : number;
 }
