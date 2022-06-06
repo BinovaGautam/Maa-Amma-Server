@@ -10,5 +10,6 @@ export class CreateCategoryDto {
     description ?: string;
 
     @IsInt()
+    @IsOptional()
     parent_id: number;
 }

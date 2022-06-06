@@ -47,6 +47,6 @@ export class AttributesController {
   //Variants Value
   @Post('value')
   createVariantValue(@Body() createValueDto: CreateValueDto) {
-    return this.attributesService.createVariantValue(createValueDto);
+    return this.attributesService.createVariantMaps(createValueDto);
   }
 }

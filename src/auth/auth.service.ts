@@ -1,11 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
-import { AuthDto } from "./dto";
+import { AuthDto , LoginDto } from "./dto";
 import * as argon from "argon2";
 import { JwtService } from "@nestjs/jwt";
 import { User } from "@prisma/client";
 import { ConfigService } from "@nestjs/config";
-
 @Injectable()
 export class AuthService{
     constructor(
@@ -13,15 +12,23 @@ export class AuthService{
         private jwtService:JwtService,
         private config:ConfigService
     ){}
+
+    async validateUser(payload:{email : string}): Promise<any> {
+        const user = await this.prisma.user.findFirst({
+            where: {
+                email: payload.email
+            }
+        });
+        if(!user) {
+            return null;
+        }
+        return user;
+    }
        
 
-    async login(dto: AuthDto){
+    async login(dto: LoginDto){
        //find if user exists
-       const user = await this.prisma.user.findFirst({
-              where : {
-                    email : dto.email
-              }
-         });
+       const user = await this.validateUser({email : dto.email});
         // if user exists   
         if(user){
             //check password
@@ -45,6 +52,11 @@ export class AuthService{
 
    async register(dto: AuthDto){
         // generate password hash
+        const isUser = await this.validateUser({ email: dto.email });
+        console.log('EMAIL ALREADY EXISTS', isUser);
+        if(isUser){
+            return {message : "User already exists"}
+        }
         const hash = await argon.hash(dto.password);
         // save user to database
         const user = await this.prisma.user.create({
@@ -53,16 +65,16 @@ export class AuthService{
                 token : hash,
                 phone : dto.phone,
                 
-            },
-            select : {
-                id : true , 
-                email : true,
-                phone : true,
             }
         })
         // return user
         
-        return user;
+       return {
+           userId: user.id,
+           email: user.email,
+        //    phone: user.phone,
+           accessToken: await this.signToken(user)
+       }
     }
 
     async signToken(user: User) : Promise<string> {

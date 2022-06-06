@@ -37,8 +37,12 @@ export class AttributesService {
 
   //Values Management
 
-  async createVariantValue(CreateValueDto: CreateValueDto) {
-    let newVariantValue = await this.prisma.productVariantValues.create({ data: CreateValueDto });
-    return { success: true, message: 'This action adds a new variant value', data: newVariantValue };
+  async createVariantMaps(createVariantDto: CreateValueDto) {
+    let newVariant = await this.prisma.productVariantsMap.create({ data: createVariantDto });
+    return { success: true, message: 'This action adds a new variant', data: newVariant };
   }
+
+ 
+
+ 
 }

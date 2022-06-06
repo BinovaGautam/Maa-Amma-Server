@@ -32,7 +32,7 @@ model Sellers{
   admin User @relation(fields: [admin_id] , references: [id])
   admin_id Int
   variants ProductVariants[]
-  varinatValues ProductVariantValues[]
+  varinatValues ProductVariantsMap[]
   products  Product[]
 }
 
@@ -64,34 +64,25 @@ model ProductVariants {
   label  String 
   creator Sellers @relation(fields: [creator_id] , references: [id])
   creator_id Int 
-  variantValues VariantsValuesMap[]
+  variantValues ProductVariantsMap[]
 }
 
-model ProductVariantValues {
+model ProductVariantsMap {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   value String
   creator Sellers @relation(fields: [creator_id] , references: [id])
-  creator_id Int
-  variantValues VariantsValuesMap[]
-}
-
-model VariantsValuesMap {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
 
   variant ProductVariants @relation(fields: [variant_id] , references: [id])
   variant_id Int
 
-  variantValue ProductVariantValues @relation(fields: [variant_value_id] , references: [id])
-  variant_value_id Int
-
+  creator_id Int
   productsAttr ProductAttributesMap[]
 }
+
+
 
 model ProductAttributesMap {
   id Int @id @default(autoincrement())
@@ -106,7 +97,7 @@ model ProductAttributesMap {
   product Product @relation(fields: [product_id] , references: [id])
   product_id Int
 
-  attribute VariantsValuesMap @relation(fields: [attribute_id] , references: [id])
+  attribute ProductVariantsMap @relation(fields: [attribute_id] , references: [id])
   attribute_id Int
 
 }
